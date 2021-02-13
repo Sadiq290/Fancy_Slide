@@ -52,7 +52,7 @@ const createSlider = () => {
   // check slider image length
   if (sliders.length< 2) {
     alert('Select at least 2 image.')
-    return;
+    // return;
   }
  
   // crate slider previous next area
@@ -70,6 +70,7 @@ const createSlider = () => {
   imagesArea.style.display = 'none';
   const duration = document.getElementById('duration').value || 1000;
   sliders.forEach(slide => {
+    console.log(slide);
     let item = document.createElement('div')
     item.className = "slider-item";
     item.innerHTML = `<img class="w-100"
