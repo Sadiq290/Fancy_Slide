@@ -39,7 +39,7 @@ let slideIndex = 0;
 const selectItem = (event, img) => {
   let element = event.target;
   element.classList.add('added');
- 
+
   let item = sliders.indexOf(img);
   if (item === -1) {
     sliders.push(img);
@@ -50,11 +50,11 @@ const selectItem = (event, img) => {
 var timer
 const createSlider = () => {
   // check slider image length
-  if (sliders.length< 2) {
+  if (sliders.length < 2) {
     alert('Select at least 2 image.')
     // return;
   }
- 
+
   // crate slider previous next area
   sliderContainer.innerHTML = '';
   const prevNext = document.createElement('div');
@@ -68,7 +68,7 @@ const createSlider = () => {
   document.querySelector('.main').style.display = 'block';
   // hide image aria
   imagesArea.style.display = 'none';
-  const duration = document.getElementById('duration').value || 1000;
+  const duration = document.getElementById('duration').value || 2000;
   sliders.forEach(slide => {
     console.log(slide);
     let item = document.createElement('div')
@@ -78,11 +78,20 @@ const createSlider = () => {
     alt="">`;
     sliderContainer.appendChild(item)
   })
-  changeSlide(0)
-  timer = setInterval(function () {
-    slideIndex++;
-    changeSlide(slideIndex);
-  }, duration);
+  if (duration < 0) {
+    changeSlide(0)
+    timer = setInterval(function () {
+      slideIndex++;
+      changeSlide(slideIndex);
+    }, 2000);
+  }
+  else {
+    changeSlide(0)
+    timer = setInterval(function () {
+      slideIndex++;
+      changeSlide(slideIndex);
+    }, duration);
+  }
 }
 
 // change slider index 
