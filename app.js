@@ -38,13 +38,15 @@ const getImages = (query) => {
 let slideIndex = 0;
 const selectItem = (event, img) => {
   let element = event.target;
-  element.classList.add('added');
+  // element.classList.add('added');
+  element.classList.toggle('added');
 
   let item = sliders.indexOf(img);
   if (item === -1) {
     sliders.push(img);
   } else {
-    alert('Hey, Already added !')
+    // alert('Hey, Already added !')
+    // element.classList.toggle('added');
   }
 }
 var timer
@@ -52,7 +54,7 @@ const createSlider = () => {
   // check slider image length
   if (sliders.length < 2) {
     alert('Select at least 2 image.')
-    // return;
+    return;
   }
 
   // crate slider previous next area
@@ -78,19 +80,19 @@ const createSlider = () => {
     alt="">`;
     sliderContainer.appendChild(item)
   })
-  if (duration < 0) {
+
+  function slide_time(time) {
     changeSlide(0)
     timer = setInterval(function () {
       slideIndex++;
       changeSlide(slideIndex);
-    }, 2000);
+    }, time);
+  }
+  if (duration < 0) {
+    slide_time(2000);
   }
   else {
-    changeSlide(0)
-    timer = setInterval(function () {
-      slideIndex++;
-      changeSlide(slideIndex);
-    }, duration);
+    slide_time(duration);
   }
 }
 
