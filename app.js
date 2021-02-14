@@ -38,15 +38,17 @@ const getImages = (query) => {
 let slideIndex = 0;
 const selectItem = (event, img) => {
   let element = event.target;
+  // console.log(element);
   // element.classList.add('added');
   element.classList.toggle('added');
 
   let item = sliders.indexOf(img);
+  console.log(item);
   if (item === -1) {
     sliders.push(img);
-  } else {
-    // alert('Hey, Already added !')
-    // element.classList.toggle('added');
+  } 
+  else{
+      sliders.splice(item, 1);
   }
 }
 var timer
@@ -72,7 +74,6 @@ const createSlider = () => {
   imagesArea.style.display = 'none';
   const duration = document.getElementById('duration').value || 2000;
   sliders.forEach(slide => {
-    console.log(slide);
     let item = document.createElement('div')
     item.className = "slider-item";
     item.innerHTML = `<img class="w-100"
